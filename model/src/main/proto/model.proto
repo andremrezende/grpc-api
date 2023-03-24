@@ -13,6 +13,6 @@ message HelloResponse {                                  //7
     string message = 1;                                  //6
 }
 
-service HelloWorldService {
+service HelloService {
     rpc sayHello (HelloRequest) returns (HelloResponse);
 }

@@ -1,23 +1,29 @@
 package br.com.rezende.grpc.server;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import br.com.rezende.grpc.model.HelloRequest;
 import br.com.rezende.grpc.model.HelloResponse;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
-import br.com.rezende.grpc.model.HelloWorldServiceGrpc;
+import br.com.rezende.grpc.model.HelloServiceGrpc;
 
 @GrpcService
-public class HelloServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
+public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
+    private static final Logger LOGGER =
+            LoggerFactory.getLogger(HelloServiceImpl.class);
 
+    @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloResponse> responseObserver) {
-        if (request.getName().isEmpty()) {
-            responseObserver.onError(
-                    Status.FAILED_PRECONDITION.withDescription("Name cannot be empty").asRuntimeException());
-        } else {
-            responseObserver.onNext(buildReply(toMessage(request.getName())));
-            responseObserver.onCompleted();
-        }
+        LOGGER.info("server received {}", request);
+
+        String message = "Hello " + request.getName() + "!";
+        HelloResponse helloResponse =
+                HelloResponse.newBuilder().setMessage(message).build();
+        LOGGER.info("server responded {}", helloResponse);
+
+        responseObserver.onNext(helloResponse);
+        responseObserver.onCompleted();
     }
 
     static String toMessage(String name) {
