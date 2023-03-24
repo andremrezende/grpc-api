@@ -1,0 +1,18 @@
+syntax = "proto3";                                       //1
+
+package br.com.rezende.grpc.model;                       //2
+
+option java_multiple_files = true;                       //3
+option java_package = "br.com.rezende.grpc.model";       //3
+
+message HelloRequest {                                    //5
+    string name = 1;                                      //6
+}
+
+message HelloResponse {                                  //7
+    string message = 1;                                  //6
+}
+
+service HelloWorldService {
+    rpc sayHello (HelloRequest) returns (HelloResponse);
+}
