@@ -1,4 +1,4 @@
-package br.com.rezende.grpc.server;
+package br.com.rezende.grpc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

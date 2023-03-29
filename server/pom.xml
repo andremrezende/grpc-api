@@ -14,7 +14,7 @@
     <version>${parent.version}</version>
 
     <properties>
-        <spring-boot-maven-plugin.version>2.6.13</spring-boot-maven-plugin.version>
+        <spring-boot-maven-plugin.version>2.6.14</spring-boot-maven-plugin.version>
         <grpc-server-spring-boot-starter.version>2.14.0.RELEASE</grpc-server-spring-boot-starter.version>
     </properties>
 
@@ -29,6 +29,20 @@
             <groupId>net.devh</groupId>
             <artifactId>grpc-server-spring-boot-starter</artifactId>
             <version>${grpc-server-spring-boot-starter.version}</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot-maven-plugin.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
